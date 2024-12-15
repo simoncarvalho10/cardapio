@@ -1,0 +1,14 @@
+instalar o Dracula (tema do vscode)
+Instalar live server
+instalar o tailwind
+
+Abrir o CMD na pasta do projeto 
+digitar: npm init -y
+instalar o tailwind: npm install -D tailwindcss
+Criar o arquivo de configuração: npx tailwindcss init
+
+no arquivo de configuração do tailwind em contente inserir a informação: "./**/*.{html,js}"
+
+Executar o comando para iniciar o projeto: npm run dev
+Abrir o arquivo index.html e inserir a tag <link> direcionando para o arquivo output.css
+NÃO ESQUECE A MARGARINA KKKK
