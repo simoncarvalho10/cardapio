@@ -113,7 +113,7 @@ function addToCart(name, price, qtdInputValues){
         onClick: function(){} // Callback after click
       }).showToast();
     
-    uppdateCartModal()
+    uppdateCartModal();
 }
 
 function uppdateCartModal(){

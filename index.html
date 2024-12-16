@@ -36,191 +36,205 @@
         </div>
     </header>
     <!--Fim Header-->
-    <h2 class=" text-2xl md:text-4xl font-bold text-center my-10">
+    <h2 class=" text-2xl md:text-4xl font-bold text-center my-6">
         Conheça o nosso Menu
     </h2>
     <!--Inicio itens-->
     <div id="menu">
         <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-6">
-            <div class="flex gap-5 bg-white shadow-md p-4">
-                <img 
-                    src="./assets/hamb-1.png"
-                    alt="Hamburger Smash"
-                    class="w-28 h-29 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
-                >
-                <div>
-                    <p class="font-bold">Hamburger Smash</p>
-                    <p class="text-sm bg-blue-500">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore. </p>
-                    <div class="flex items-center gap-2 justify-between mt-3 h-8">
-                        <p class="font-bold text-lg bg-green-500">R$ 18,99</p>
-                        <div class="qtdcontainer h-full flex gap-3 bg-yellow-300">
-                            <div class="flex">  
-                                <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
-								    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
-								<button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
-                            </div>                          		
-                        </div> 
-                    </div>
-                </div>
-            </div>
-            <div class="flex gap-5 bg-white shadow-md p-4">
-                <img 
-                    src="./assets/hamb-2.png"
-                    alt="Hamburger Duplo"
-                    class="w-36 h-29 rounded hover:scale-110 hover:-rotate-2 duration-300"
-                >
-                <div class="Flex flex-col">
-                    <p class="font-bold">Hamburger Duplo</p>
-                    <p class="text-sm my-1">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore. </p>
-                    <div class="flex items-center gap-2 justify-between my-1 h-8"">
-                        <p class="font-bold text-xl">R$ 32,90</p>
-                        <div class="qtdcontainer h-full flex gap-3">
-                            <div class="flex">  
-                                <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
-								    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
-								<button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
-                            </div>  		
-                         </div> 
-                    </div>
-                    <button 
-                        class="add-to-cart-btn mt-1 w-full bg-sky-700  hover:bg-sky-400 text-white px-4 h-8 rounded"
-                        data-name="Hamburger Smash"
-                        data-price="18.99"
+
+            <div class="qtdcontainer flex flex-col bg-white shadow-md p-4">
+                <div class="flex gap-5">
+                    <img 
+                        src="./assets/hamb-3.png"
+                        alt="Hamburger Smash"
+                        class="w-28 h-28 rounded hover:scale-110 hover:-rotate-2 duration-300"
                     >
-                    Adicionar ao carrinho <i class=" fa fa-cart-plus text-sm"></i> 
-                    </button>
+                    <div class="Flex ">
+                        <p class="font-bold text-lg">Hamburger Smash</p>
+                        <p class="text-sm my-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                        <div class="flex gap-2 justify-between h-8">
+                            <p class="font-bold flex text-xl">R$ 18,99</p>
+                            <div class="h-full flex">
+                                <div class="flex">  
+                                    <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
+                                        <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
+                                    <button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
+                                </div>  		
+                            </div> 
+                        </div>
+                    </div>
                 </div>
+                <button 
+                    class="add-to-cart-btn mt-3 w-full bg-sky-700  hover:bg-sky-400 text-white px-4 h-8 rounded"
+                    data-name="Hamburger Smash"
+                    data-price="18.99"
+                >
+                Adicionar ao carrinho <i class=" fa fa-cart-plus text-sm"></i> 
+                </button>
             </div>
-            <div class="flex gap-5 bg-white shadow-md p-4">
-                <img 
-                    src="./assets/hamb-3.png"
-                    alt="Hamburger Salad"
-                    class="w-28 h-29 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
-                >
-                <div>
-                    <p class="font-bold">Hamburger Salad</p>
-                    <p class="text-sm">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore. </p>
-                    <div class="flex items-center gap-2 justify-between mt-3 h-8">
-                        <p class="font-bold text-lg">R$ 22,50</p>
-                        <div class="qtdcontainer h-ful flex gap-3">
-                            <div class="flex">  
-                                <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
-								    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
-								<button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
-                            </div>  
-  
-                            <button 
-                                class="add-to-cart-btn bg-sky-700 hover:bg-sky-400 text-white font-bold px-4 rounded"
-                                data-name="Hamburger salad"
-								data-price="22.50"
-                            >
-								<i class=" fa fa-cart-plus text-sm"></i>
-                            </button>	
-                         </div> 
+
+            <div class="qtdcontainer flex flex-col bg-white shadow-md p-4">
+                <div class="flex gap-5">
+                    <img 
+                        src="./assets/hamb-1.png"
+                        alt="Hamburger Salad"
+                        class="w-28 h-28 rounded hover:scale-110 hover:-rotate-2 duration-300"
+                    >
+                    <div class="Flex ">
+                        <p class="font-bold text-lg">Hamburger Salad</p>
+                        <p class="text-sm my-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                        <div class="flex gap-2 justify-between h-8">
+                            <p class="font-bold flex text-xl">R$ 22,50</p>
+                            <div class="h-full flex">
+                                <div class="flex">  
+                                    <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
+                                        <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
+                                    <button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
+                                </div>  		
+                            </div> 
+                        </div>
                     </div>
                 </div>
-            </div>  
-            <div class="flex gap-5 bg-white shadow-md p-4">
-                <img 
-                    src="./assets/hamb-4.png"
-                    alt="Hamburger Chicken"
-                    class="w-28 h-29 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                <button 
+                    class="add-to-cart-btn mt-3 w-full bg-sky-700  hover:bg-sky-400 text-white px-4 h-8 rounded"
+                    data-name="Hamburger Salad"
+                    data-price="22.50"
                 >
-                <div>
-                    <p class="font-bold">Hamburger Chicken</p>
-                    <p class="text-sm">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore. </p>
-                    <div class="flex items-center gap-2 justify-between mt-3 h-8">
-                        <p class="font-bold text-lg">R$ 27,90</p>
-                        <div class="qtdcontainer h-ful flex gap-3">
-                            <div class="flex">  
-                                <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
-								    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
-								<button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
-                            </div>  
- 
-							<button 
-                                class="add-to-cart-btn bg-sky-700  hover:bg-sky-400 text-white font-bold px-4 rounded"
-                                data-name="Hamburger chicken"
-								data-price="27.90"
-                            >
-								<i class=" fa fa-cart-plus text-sm"></i>
-                            </button>									
-                         </div> 
+                Adicionar ao carrinho <i class=" fa fa-cart-plus text-sm"></i> 
+                </button>
+            </div>
+            
+            <div class="qtdcontainer flex flex-col bg-white shadow-md p-4">
+                <div class="flex gap-5">
+                    <img 
+                        src="./assets/hamb-4.png"
+                        alt="Hamburger Chicken<"
+                        class="w-28 h-28 rounded hover:scale-110 hover:-rotate-2 duration-300"
+                    >
+                    <div class="Flex ">
+                        <p class="font-bold text-lg">Hamburger Chicken</p>
+                        <p class="text-sm my-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                        <div class="flex gap-2 justify-between h-8">
+                            <p class="font-bold flex text-xl">R$ 27,90</p>
+                            <div class="h-full flex">
+                                <div class="flex">  
+                                    <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
+                                        <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
+                                    <button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
+                                </div>  		
+                            </div> 
+                        </div>
                     </div>
                 </div>
-            </div> 
-        </main>
-        <h2 class="text-2xl md:text-4xl font-bold text-center w-full my-10">
+                <button 
+                    class="add-to-cart-btn mt-3 w-full bg-sky-700  hover:bg-sky-400 text-white px-4 h-8 rounded"
+                    data-name="Hamburger Chicken"
+                    data-price="27.90"
+                >
+                Adicionar ao carrinho <i class=" fa fa-cart-plus text-sm"></i> 
+                </button>
+            </div>
+            
+            <div class="qtdcontainer flex flex-col bg-white shadow-md p-4">
+                <div class="flex gap-5">
+                    <img 
+                        src="./assets/hamb-2.png"
+                        alt="Hamburger Duplo"
+                        class="w-28 h-28 rounded hover:scale-110 hover:-rotate-2 duration-300"
+                    >
+                    <div class="Flex ">
+                        <p class="font-bold text-lg">Hamburger Duplo</p>
+                        <p class="text-sm my-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>
+                        <div class="flex gap-2 justify-between h-8">
+                            <p class="font-bold flex text-xl">R$ 32,90</p>
+                            <div class="h-full flex">
+                                <div class="flex">  
+                                    <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
+                                        <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
+                                    <button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
+                                </div>  		
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <button 
+                    class="add-to-cart-btn mt-3 w-full bg-sky-700  hover:bg-sky-400 text-white px-4 h-8 rounded"
+                    data-name="Hamburger Duplo"
+                    data-price="32.99"
+                >
+                Adicionar ao carrinho <i class=" fa fa-cart-plus text-sm"></i> 
+                </button>
+            </div>            
+            
+        <h2 class="text-2xl md:text-4xl font-bold text-center w-full my-6">
             Bebidas
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl px-6 mb-16"></main>
-            <div class="flex gap-5 bg-white shadow-md p-4">
+
+        <div class="qtdcontainer flex flex-col bg-white shadow-md p-4">
+            <div class="flex gap-5">
                 <img 
                     src="./assets/refri-1.png"
                     alt="Coca Cola"
-                    class="bg-gray-300 w-28 h-29 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                    class="w-28 h-28 rounded hover:scale-110 hover:-rotate-2 duration-300"
                 >
-                <div class="w-full flex flex-col justify-center">
-                    <p class="font-bold ">Coca Cola</p>
-                    <p class="text-sm">
-                        Refrigerante em lata 350mL
-                    </p>
-                    <div class="flex items-center gap-2 justify-between mt-3 h-8">
-                        <p class="font-bold text-lg">R$ 5,90</p>
-                        <div class="qtdcontainer h-ful flex gap-3">
+                <div class="Flex ">
+                    <p class="font-bold text-lg">Coca Cola</p>
+                    <p class="text-sm my-1">Refrigerante em lata 350mL.</p>
+                    <div class="flex gap-2 justify-between h-8">
+                        <p class="font-bold flex text-xl">R$ 5,90</p>
+                        <div class="h-full flex">
                             <div class="flex">  
                                 <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
-								    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
-								<button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
-                            </div>  
- 
-                            <button 
-                                class="add-to-cart-btn bg-sky-700  hover:bg-sky-400 text-white font-bold px-4 rounded"
-                                data-name="Coca Cola"
-                                data-price="5.90"
-                            >
-								<i class=" fa fa-cart-plus text-sm"></i>
-                            </button>
+                                    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
+                                <button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
+                            </div>  		
                         </div> 
                     </div>
                 </div>
             </div>
-            <div class="flex gap-5 bg-white shadow-md p-4">
+            <button 
+                class="add-to-cart-btn mt-3 w-full bg-sky-700  hover:bg-sky-400 text-white px-4 h-8 rounded"
+                data-name="Coca Cola"
+                data-price="5.90"
+            >
+            Adicionar ao carrinho <i class=" fa fa-cart-plus text-sm"></i> 
+            </button>
+        </div>  
+        
+        
+        <div class="qtdcontainer flex flex-col bg-white shadow-md p-4">
+            <div class="flex gap-5">
                 <img 
                     src="./assets/refri-2.png"
-                    alt="Guarana Antartica"
-                    class="bg-gray-300 w-28 h-29 rounded-md hover:scale-110 hover:-rotate-2 duration-300"
+                    alt="Guaraná Antartica"
+                    class="w-28 h-28 rounded hover:scale-110 hover:-rotate-2 duration-300"
                 >
-                <div class="w-full flex flex-col justify-center">
-                    <p class="font-bold">Guaraná Antartica</p>
-                    <p class="text-sm">
-                        Refrigerante em lata 350mL
-                    </p>
-                    <div class="flex items-center gap-2 justify-between mt-3 h-8">
-                        <p class="font-bold text-lg">R$ 5,90</p>
-                        <div class="qtdcontainer h-ful flex gap-3">
+                <div class="Flex ">
+                    <p class="font-bold text-lg">Guaraná Antartica</p>
+                    <p class="text-sm my-1">Refrigerante em lata 350mL.</p>
+                    <div class="flex gap-2 justify-between h-8">
+                        <p class="font-bold flex text-xl">R$ 5,90</p>
+                        <div class="h-full flex">
                             <div class="flex">  
                                 <button class="increment-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-s-lg shadow">+</button>
-								    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
-								<button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
-                            </div>  
-   
-                            <button 
-                                class="add-to-cart-btn bg-sky-700  hover:bg-sky-400 text-white font-bold px-4 rounded"
-                                data-name="Guarana Antartica"
-                                data-price="5.90"
-                            >
-								<i class=" fa fa-cart-plus text-sm"></i>
-                            </button>	
+                                    <input type="text" class="quantity-input bg-gray-50 border-x-0 border-gray-300 text-center text-sm w-8" placeholder="999" required value="1" />
+                                <button class="decrement-button bg-white hover:bg-gray-100 text-gray-800 font-semibold px-2 border border-gray-400 rounded-e-lg shadow">-</button>
+                            </div>  		
                         </div> 
                     </div>
                 </div>
             </div>
-        </div>    
+            <button 
+                class="add-to-cart-btn mt-3 w-full bg-sky-700  hover:bg-sky-400 text-white px-4 h-8 rounded"
+                data-name="Guarana Antartica"
+                data-price="5.90"
+            >
+            Adicionar ao carrinho <i class=" fa fa-cart-plus text-sm"></i> 
+            </button>
+        </div>  
+
+            
     </div>    
     <div 
         class="bg-black/80 w-full h-full fixed top-0 left-0 z-[99] hidden items-center justify-center"
