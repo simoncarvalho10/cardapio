@@ -67,7 +67,20 @@ document.addEventListener('click', (event) => {
         if (inputValue > 0){
             addToCart(name, price, inputValue)
         } else {
-            alert("Quantidade não permitida!")
+
+            Toastify({
+                text: "Quantidade não permitida!",
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "center", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                  background: "#ef4444",
+                },
+                onClick: function(){} // Callback after click
+              }).showToast();
+
         }
     }
 
@@ -86,7 +99,20 @@ function addToCart(name, price, qtdInputValues){
             qtd: qtdInputValues,
         })
     }
-    alert("Item adicionado ao carrinho!");
+
+    Toastify({
+        text: "Item adicionado ao carrinho!",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "#22c55e",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+    
     uppdateCartModal()
 }
 
@@ -138,7 +164,20 @@ function removeItemCart(name){
         console.log(item);
 
         cart.splice(index, 1);
-        alert("Item removido do carrinho!");
+
+        Toastify({
+            text: "Item removido do carrinho!",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "#22c55e",
+            },
+            onClick: function(){} // Callback after click
+          }).showToast();
+
         uppdateCartModal();
     }
 }
