@@ -241,17 +241,52 @@
         class="bg-black/80 w-full h-full fixed top-0 left-0 z-[99] hidden items-center justify-center"
         id="cart-modal"
     >
-        <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[680px]">
+        <div class="bg-slate-100 p-5 rounded-md min-w-[90%] max-h-[90%] md:min-w-[680px] overflow-auto">
+            
             <h2 class="text-center font-bold text-2x1 mb-2">Meu carrinho</h2>
-            <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
-            <p class="font-bold">Total: <span id="cart-total">0,00</span></p>
-            <p class="font-bold mt-4">Endereço de entrega:</p>
-            <input 
-                type="text" 
-                placeholder="Digite o seu endereço completo!"
-                id="adress"
-                class="w-full border-2 p-1 rounded-none my-2"
-            >
+            <div class="flex flex-col bg-white p-4 shadow-md">
+                <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
+                <p class="font-bold">Total: <span id="cart-total">0,00</span></p>
+            </div>
+            <h2 class="text-center font-bold text-2x1 m-3">Dados do Cliente</h2>
+            <div class="flex flex-col bg-white p-4 shadow-md">
+                <p class="font-bold">Nome:</p>
+                <input 
+                    type="text" 
+                    placeholder="Digite o seu nome!"
+                    id="cliente"
+                    class="w-full border-2 p-1 rounded-none my-2 mb-4"
+                >
+                <p class="font-bold">Endereço de entrega:</p>
+                <input 
+                    type="text" 
+                    placeholder="Digite o seu endereço completo!"
+                    id="adress"
+                    class="w-full border-2 p-1 rounded-none my-2"
+                >
+                <div class="flex items-center">
+                    <input checked id="getLocation" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Enviar localização</label>
+                </div>
+            </div>
+            <h2 class="text-center font-bold text-2x1 m-3">Dados do Pedido</h2>
+            <div class="flex flex-col bg-white p-4 shadow-md">
+                <p class="font-bold mt-4 w-full">Tipo do pedido:</p>
+                    <select id="tp_pedido" class="select-box w-full border-2 p-1 rounded-none my-2">
+                        <option value="opcao1">Delivery</option>
+                        <option value="opcao2">Retirar</option>
+                        <option value="opcao3">Comer no Local</option>
+                    </select>
+                </p>
+                <p class="font-bold mt-4 w-full">Forma de Paagamento:</p>
+                    <select id="tp_pagamento" class="select-box w-full border-2 p-1 rounded-none my-2">
+                        <option value="opcao1">Pix</option>
+                        <option value="opcao2">Débito</option>
+                        <option value="opcao3">Crédito</option>
+                        <option value="opcao3">Dinheiro</option>
+                    </select>
+                </p>
+            </div>
             <p class="text-red-500 hidden" id="adress-warn">Digite o seu endereço completo!</p>
             <div class="flex items-center justify-between mt-5 w-full">
                 <button id="close-modal-btn">Fechar</button>

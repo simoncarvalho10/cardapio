@@ -9,9 +9,14 @@ const closeModalBtn = document.getElementById("close-modal-btn")
 const cartCounter = document.getElementById("cart-count")
 const adressImput = document.getElementById("adress")
 const adressWarn = document.getElementById("adress-warn")
-const incrementButton = document.querySelectorAll('.increment-button');
-const decrementButton = document.querySelectorAll('.decrement-button');
-const cartButton = document.querySelectorAll('.add-to-cart-btn');
+const incrementButton = document.querySelectorAll('.increment-button')
+const decrementButton = document.querySelectorAll('.decrement-button')
+const cartButton = document.querySelectorAll('.add-to-cart-btn')
+
+const tpPedido = document.getElementById("tp_pedido")
+const tpPagamento = document.getElementById("tp_pagamento")
+const cliente = document.getElementById("cliente")
+
 
 let cart = [];
 
@@ -126,16 +131,19 @@ function uppdateCartModal(){
 
         cartItemElement.innerHTML = `
         
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="font-medium">${item.name}</p>
-                <p>Qtd: ${item.qtd}</p>
-                <p class="font-medium mt-2"> R$ ${item.price.toFixed(2)}</p>
+        
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="font-medium">${item.name}</p>
+                    <p>Qtd: ${item.qtd}</p>
+                    <p class="font-medium mt-2"> R$ ${item.price.toFixed(2)}</p>
+                </div>
+                <button class="remove-from-cart-btn" data-name="${item.name}">
+                    Remover
+                </button>
             </div>
-            <button class="remove-from-cart-btn" data-name="${item.name}">
-                Remover
-            </button>
-        </div>
+            <div class="border-b border-gray-500 mt-3 w-full"></div>
+        
         `
         total += item.price * item.qtd;
 
@@ -183,6 +191,7 @@ function removeItemCart(name){
 }
 
 adressImput.addEventListener("input", function(event){
+
     let inputValue = event.target.value;   
     if(inputValue !== ""){
         adressImput.classList.remove("border-red-500")
@@ -190,10 +199,84 @@ adressImput.addEventListener("input", function(event){
     } 
 })
 
+const getLocation = document.getElementById("get-Location")
+
 checkoutBtn.addEventListener("click", function(){
     const isOpen = checkRestaurantOpen();
 
-    if (!isOpen){
+    const checkbox = document.getElementById('getLocation');
+
+    if (!checkbox.checked) {
+        let resposta = confirm("Deseja enviar a localização para faclitar a entrega?");
+    
+        if (resposta) {
+    
+            validarCheckboxFormulario(function (latitude, longitude){
+                const link = `https://www.google.com/maps?q=${latitude},${longitude}`;          
+            
+                alert("Enviar localização");
+
+                const selecttpPedido = document.getElementById("tp_pedido");
+                const tpPedidoIdx = selecttpPedido.selectedIndex;
+                const tpPedidoIdxText = selecttpPedido.options[tpPedidoIdx].text;
+    
+                const selecttpPagamento = document.getElementById("tp_pedido");
+                const tpPagamentoIdx = selecttpPagamento.selectedIndex;
+                const tpPagamentoIdxText = selecttpPagamento.options[tpPagamentoIdx].text;
+    
+                alert("Localização: " + link);
+                alert("Cliente: " + cliente.value);
+                alert("Endereço: " + adressImput.value);  
+                alert("Tipo da entega: " + tpPedidoIdxText);
+                alert("Forma de pagamento" + tpPagamentoIdxText);              
+            
+            })	
+            
+   
+    
+        } else {
+
+            const selecttpPedido = document.getElementById("tp_pedido");
+            const tpPedidoIdx = selecttpPedido.selectedIndex;
+            const tpPedidoIdxText = selecttpPedido.options[tpPedidoIdx].text;
+
+            const selecttpPagamento = document.getElementById("tp_pedido");
+            const tpPagamentoIdx = selecttpPagamento.selectedIndex;
+            const tpPagamentoIdxText = selecttpPagamento.options[tpPagamentoIdx].text;
+
+            alert("Cliente: " + cliente.value);
+            alert("Endereço: " + adressImput.value);  
+            alert("Tipo da entega: " + tpPedidoIdxText);
+            alert("Forma de pagamento" + tpPagamentoIdxText);           
+            
+        }		
+    
+    } else {
+
+        validarCheckboxFormulario(function (latitude, longitude){
+            const link = `https://www.google.com/maps?q=${latitude},${longitude}`;          
+        
+            alert("Enviar localização");
+
+            const selecttpPedido = document.getElementById("tp_pedido");
+            const tpPedidoIdx = selecttpPedido.selectedIndex;
+            const tpPedidoIdxText = selecttpPedido.options[tpPedidoIdx].text;
+
+            const selecttpPagamento = document.getElementById("tp_pedido");
+            const tpPagamentoIdx = selecttpPagamento.selectedIndex;
+            const tpPagamentoIdxText = selecttpPagamento.options[tpPagamentoIdx].text;
+
+            alert("Localização: " + link);
+            alert("Cliente: " + cliente.value);
+            alert("Endereço: " + adressImput.value);  
+            alert("Tipo da entega: " + tpPedidoIdxText);
+            alert("Forma de pagamento" + tpPagamentoIdxText);              
+        
+        })	    
+        
+    }   
+
+   /* if (!isOpen){
 
         Toastify({
             text: "No momento o restaurante está fechado!",
@@ -208,7 +291,7 @@ checkoutBtn.addEventListener("click", function(){
             onClick: function(){} // Callback after click
           }).showToast();
         return;
-    }
+    }*/
 
     if(cart.length === 0) return;
     if(adressImput.value === ""){
@@ -254,6 +337,40 @@ if (isOpen){
 }
 
 // VERIFICAR SE O RESTAURANTE ESTÁ ABERTO
-    
+
+function validarCheckboxFormulario(callback) {
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            
+            let latitude = position.coords.longitude;
+            let longitude = position.coords.longitude;
+            
+			callback(latitude, longitude);
+        },
+        (error) => {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("Permissão negada para acessar a localização.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Localização indisponível.");
+                    break;
+                case error.TIMEOUT:
+                    alert("O tempo para obter a localização expirou.");
+                    break;
+                default:
+                    alert("Erro desconhecido ao obter a localização.");
+                    break;
+            }
+        }
+        
+    )
+}
+
+
+
+ 
+
 
 
