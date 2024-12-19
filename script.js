@@ -9,13 +9,22 @@ const closeModalBtn = document.getElementById("close-modal-btn")
 const cartCounter = document.getElementById("cart-count")
 const adressImput = document.getElementById("adress")
 const adressWarn = document.getElementById("adress-warn")
+const clientImput = document.getElementById("cliente")
+const nameWarn = document.getElementById("name-warn")
 const incrementButton = document.querySelectorAll('.increment-button')
 const decrementButton = document.querySelectorAll('.decrement-button')
 const cartButton = document.querySelectorAll('.add-to-cart-btn')
-
-const tpPedido = document.getElementById("tp_pedido")
-const tpPagamento = document.getElementById("tp_pagamento")
 const cliente = document.getElementById("cliente")
+
+
+function atualizarIndexSelect(selectId) {
+    const selectElement = document.getElementById(selectId);
+    const currentIndex = selectElement.selectedIndex;
+    const currenteOptions = selectElement.options[currentIndex].text;
+    return currenteOptions;
+}
+ 
+const spanItem = document.getElementById("date-spam")
 
 
 let cart = [];
@@ -160,7 +169,6 @@ document.addEventListener("click", function (event) {
     if (event.target.classList.contains("remove-from-cart-btn")) {
         const name = event.target.getAttribute("data-name")
         console.log(name); 
-
         removeItemCart(name)
     } 
 });
@@ -199,84 +207,135 @@ adressImput.addEventListener("input", function(event){
     } 
 })
 
-const getLocation = document.getElementById("get-Location")
+clientImput.addEventListener("input", function(event){
 
-checkoutBtn.addEventListener("click", function(){
-    const isOpen = checkRestaurantOpen();
+    let inputValue = event.target.value;   
+    if(inputValue !== ""){
+        clientImput.classList.remove("border-red-500")
+        nameWarn.classList.add("hidden")
+    } 
+})
 
-    const checkbox = document.getElementById('getLocation');
+// Função para obter a localização
+function validarLocalizacao() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const link = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                resolve(link); // Resolve a Promise com o link
+            },
+            (error) => {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        reject("Permissão negada para acessar a localização.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        reject("Localização indisponível.");
+                        break;
+                    case error.TIMEOUT:
+                        reject("O tempo para obter a localização expirou.");
+                        break;
+                    default:
+                        reject("Erro desconhecido ao obter a localização.");
+                        break;
+                }
+            }
+        );
+    });
+}
 
-    if (!checkbox.checked) {
+async function obterLink() {
+    try {
+        const vLink = await validarLocalizacao(); // Aguarda o link da localização
+        return vLink;
+    } catch (error) {
+        alert("Erro: " + error);
+    }
+};         
+
+function chkDelivery(){
+    const txtTpPedido = atualizarIndexSelect("tp_pedido");
+    return txtTpPedido == "Delivery";
+}
+
+async function validaPedido(){
+    const checkbox = document.getElementById('getLocation'); 
+    const txtTpPedido = atualizarIndexSelect("tp_pedido");
+    const txtTpPgto = atualizarIndexSelect("tp_pagamento");
+    const isDelivery = chkDelivery(); 
+
+    if (!checkbox.checked && isDelivery) {
+        
         let resposta = confirm("Deseja enviar a localização para faclitar a entrega?");
     
         if (resposta) {
-    
-            validarCheckboxFormulario(function (latitude, longitude){
-                const link = `https://www.google.com/maps?q=${latitude},${longitude}`;          
             
-                alert("Enviar localização");
+            const vLink = await obterLink();
+            /*alert("Localização: " + vLink);
+            alert("Cliente: " + cliente.value);
+            alert("Endereço: " + adressImput.value);  
+            alert("Tipo da entega: " + txtTpPedido);
+            alert("Forma de pagamento: " + txtTpPgto);  */
 
-                const selecttpPedido = document.getElementById("tp_pedido");
-                const tpPedidoIdx = selecttpPedido.selectedIndex;
-                const tpPedidoIdxText = selecttpPedido.options[tpPedidoIdx].text;
-    
-                const selecttpPagamento = document.getElementById("tp_pedido");
-                const tpPagamentoIdx = selecttpPagamento.selectedIndex;
-                const tpPagamentoIdxText = selecttpPagamento.options[tpPagamentoIdx].text;
-    
-                alert("Localização: " + link);
-                alert("Cliente: " + cliente.value);
-                alert("Endereço: " + adressImput.value);  
-                alert("Tipo da entega: " + tpPedidoIdxText);
-                alert("Forma de pagamento" + tpPagamentoIdxText);              
+            const vMsg2 = `*Cliente:* ${cliente.value}%0A*Endereço:* ${adressImput.value}%0A*Tipo da entrega:*+${txtTpPedido}%0A*Forma de pagamento:* ${txtTpPgto}%0A*Localização:* ${vLink}`
+            return vMsg2;
             
-            })	
-            
-   
-    
+                                    
         } else {
 
-            const selecttpPedido = document.getElementById("tp_pedido");
-            const tpPedidoIdx = selecttpPedido.selectedIndex;
-            const tpPedidoIdxText = selecttpPedido.options[tpPedidoIdx].text;
-
-            const selecttpPagamento = document.getElementById("tp_pedido");
-            const tpPagamentoIdx = selecttpPagamento.selectedIndex;
-            const tpPagamentoIdxText = selecttpPagamento.options[tpPagamentoIdx].text;
-
-            alert("Cliente: " + cliente.value);
+            /*alert("Cliente: " + cliente.value);
             alert("Endereço: " + adressImput.value);  
-            alert("Tipo da entega: " + tpPedidoIdxText);
-            alert("Forma de pagamento" + tpPagamentoIdxText);           
+            alert("Tipo da entega: " + txtTpPedido);
+            alert("Forma de pagamento: " + txtTpPgto);*/
             
+            const vMsg2 = `*Cliente:* ${cliente.value}%0A*Endereço:* ${adressImput.value}%0A*Tipo da entrega:*+${txtTpPedido}%0A*Forma de pagamento:* ${txtTpPgto}`
+            return vMsg2;
         }		
     
-    } else {
+    } else if (checkbox.checked && isDelivery){
 
-        validarCheckboxFormulario(function (latitude, longitude){
-            const link = `https://www.google.com/maps?q=${latitude},${longitude}`;          
+        const vLink = await obterLink();
+   
+        /*alert("Localização: " + vLink);
+        alert("Cliente: " + cliente.value);
+        alert("Endereço: " + adressImput.value);  
+        alert("Tipo da entega: " + txtTpPedido);
+        alert("Forma de pagamento: " + txtTpPgto);   */
         
-            alert("Enviar localização");
+        const vMsg2 = `*Cliente:* ${cliente.value}%0A*Endereço:* ${adressImput.value}%0A*Tipo da entrega:*+${txtTpPedido}%0A*Forma de pagamento:* ${txtTpPgto}%0A*Localização:* ${vLink}`
+        return vMsg2;
 
-            const selecttpPedido = document.getElementById("tp_pedido");
-            const tpPedidoIdx = selecttpPedido.selectedIndex;
-            const tpPedidoIdxText = selecttpPedido.options[tpPedidoIdx].text;
+    }   else {
+            
+        /*alert("Cliente: " + cliente.value);
+        alert("Forma de pagamento: " + txtTpPgto); */
 
-            const selecttpPagamento = document.getElementById("tp_pedido");
-            const tpPagamentoIdx = selecttpPagamento.selectedIndex;
-            const tpPagamentoIdxText = selecttpPagamento.options[tpPagamentoIdx].text;
+        const vMsg2 = `*Cliente:* ${cliente.value}%0A*Forma de pagamento:* ${txtTpPgto}`
+        return vMsg2;
+    }
 
-            alert("Localização: " + link);
-            alert("Cliente: " + cliente.value);
-            alert("Endereço: " + adressImput.value);  
-            alert("Tipo da entega: " + tpPedidoIdxText);
-            alert("Forma de pagamento" + tpPagamentoIdxText);              
-        
-        })	    
-        
-    }   
+}
 
-   /* if (!isOpen){
+checkoutBtn.addEventListener("click", async function(){
+
+    const vPedido = await validaPedido();
+
+    if(cart.length === 0) return;
+    if(clientImput.value === ""){
+        nameWarn.classList.remove("hidden")
+        clientImput.classList.add("border-red-500")
+        return;
+    }
+
+    if(adressImput.value === ""){
+        adressWarn.classList.remove("hidden")
+        adressImput.classList.add("border-red-500")
+        return;
+    }
+
+    /*if (!isOpen){
 
         Toastify({
             text: "No momento o restaurante está fechado!",
@@ -293,24 +352,24 @@ checkoutBtn.addEventListener("click", function(){
         return;
     }*/
 
-    if(cart.length === 0) return;
-    if(adressImput.value === ""){
-        adressWarn.classList.remove("hidden")
-        adressImput.classList.add("border-red-500")
-        return;
-    }
+
 
     //ENVIAR O PEDIDO
     const cartItens = cart.map((item) => {
         return (
-           ` ${item.name} Quantidade: (${item.qtd}) Preço: R$${item.price}`
+           //`*Item:*+${item.name}%0A*Quantidade:*+(${item.qtd})*2%0A*Preço:*+R$${item.price}%0A%0A`
+           `*Item:* ${item.name}%0A*Quantidade:* ${item.qtd}%0A*Preço:* R$${item.price}%0A%0A`
          )
     }).join("")
 
-    const message = encodeURIComponent(cartItens)
+    const message = cartItens
     const phone = "5562984917598"
 
-    window.open(`https://wa.me/${phone}?text=${message} Endereço: ${adressImput.value}`,"_blank")
+    //const vTexto = encodeURIComponent(`${message}+${vPedido}`)
+    //alert(vTexto);
+
+    window.open(`https://wa.me/${phone}?text=${message}${vPedido}`,"_blank")
+    //alert(`https://wa.me/${phone}?text=${message}%0A%0A ${vPedido}`);
 
     cart = [];
     uppdateCartModal();
@@ -325,7 +384,7 @@ function checkRestaurantOpen (){
     return hora >= 18 && hora < 22;
 }
 
-const spanItem = document.getElementById("date-spam")
+
 const isOpen = checkRestaurantOpen();
 
 if (isOpen){
@@ -338,35 +397,7 @@ if (isOpen){
 
 // VERIFICAR SE O RESTAURANTE ESTÁ ABERTO
 
-function validarCheckboxFormulario(callback) {
 
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            
-            let latitude = position.coords.longitude;
-            let longitude = position.coords.longitude;
-            
-			callback(latitude, longitude);
-        },
-        (error) => {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    alert("Permissão negada para acessar a localização.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    alert("Localização indisponível.");
-                    break;
-                case error.TIMEOUT:
-                    alert("O tempo para obter a localização expirou.");
-                    break;
-                default:
-                    alert("Erro desconhecido ao obter a localização.");
-                    break;
-            }
-        }
-        
-    )
-}
 
 
 
