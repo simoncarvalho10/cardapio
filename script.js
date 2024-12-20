@@ -32,7 +32,7 @@ let cart = [];
 // Adicionar evento de clique para os botões de decrementar
 incrementButton.forEach((button) => {
     button.addEventListener('click', () => {
-    const input = button.nextElementSibling; // Input está após o botão decrement
+    const input = button.previousElementSibling; // Input está após o botão decrement
     let currentValue = parseInt(input.value) || 0;
     currentValue++;
     input.value = currentValue;
@@ -42,18 +42,22 @@ incrementButton.forEach((button) => {
 // Adicionar evento de clique para os botões de decrementar
 decrementButton.forEach((button) => {
     button.addEventListener('click', () => {
-    const input = button.previousElementSibling; // Input está antes o botão decrement
+    const input = button.nextElementSibling; // Input está antes o botão decrement
     let currentValue = parseInt(input.value) || 0;
     
-    if(currentValue > 1){
+    if(currentValue > 0){
         currentValue--;
         input.value = currentValue;
     }
     });
 });
 
-cartBtn.addEventListener("click", function() {
-   cartmodal.style.display = "flex" 
+cartBtn.addEventListener("click", function() { 
+    if(cart.length > 0){
+        cartmodal.style.display = "flex"  
+    } else {
+        alert("Não há nenhum item no carrinho")
+    }
 })
 
 cartmodal.addEventListener("click", function(event){
@@ -363,12 +367,13 @@ checkoutBtn.addEventListener("click", async function(){
     }).join("")
 
     const message = cartItens
+    const totalItens = cart.reduce((total, item) => total + (item.qtd * item.price), 0);
     const phone = "5562984917598"
 
     //const vTexto = encodeURIComponent(`${message}+${vPedido}`)
     //alert(vTexto);
 
-    window.open(`https://wa.me/${phone}?text=${message}${vPedido}`,"_blank")
+    window.open(`https://wa.me/${phone}?text=${message}*Total:* R$${totalItens.toFixed(2)}%0A%0A${vPedido}`,"_blank")
     //alert(`https://wa.me/${phone}?text=${message}%0A%0A ${vPedido}`);
 
     cart = [];
