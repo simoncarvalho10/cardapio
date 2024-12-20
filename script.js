@@ -135,7 +135,8 @@ function uppdateCartModal(){
                 <div>
                     <p class="font-medium">${item.name}</p>
                     <p>Qtd: ${item.qtd}</p>
-                    <p class="font-medium mt-2"> R$ ${item.price.toFixed(2)}</p>
+                    <p class="font-medium mt-2">R$ ${item.price.toFixed(2)}</p>
+                    <p class="font-medium mt-2">Qtd Total: ${(item.qtd * item.price).toFixed(2)}</p>
                 </div>
                 <button class="remove-from-cart-btn" data-name="${item.name}">
                     Remover
@@ -346,7 +347,7 @@ checkoutBtn.addEventListener("click", async function(){
     const cartItens = cart.map((item) => {
         return (
            //`*Item:*+${item.name}%0A*Quantidade:*+(${item.qtd})*2%0A*Preço:*+R$${item.price}%0A%0A`
-           `*Item:* ${item.name}%0A*Quantidade:* ${item.qtd}%0A*Preço:* R$ ${item.price}%0A%0A`
+           `*Item:* ${item.name}%0A*Quantidade:* ${item.qtd}%0A*Preço:* R$ ${item.price}%0A*Qtde. Total:* R$ ${item.qtd * item.price}%0A%0A`
          )
     }).join("")
 
