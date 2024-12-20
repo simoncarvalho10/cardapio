@@ -251,41 +251,43 @@
             </div>
             <h2 class="text-center font-bold text-2x1 m-3">Dados do Cliente</h2>
             <div class="flex flex-col bg-white p-4 shadow-md">
-                <p class="font-bold">Nome:</p>
+                <p class="font-bold">*Nome:</p>
                 <input 
                     type="text" 
                     placeholder="Digite o seu nome!"
                     id="cliente"
-                    class="w-full border-2 p-1 rounded-none my-2 mb-4"
+                    class="w-full border-2 p-1 rounded-none mt-2 mb-3"
                 >
-                <p class="text-red-500 hidden" id="name-warn">Digite o seu nome!</p>
-                <p class="font-bold">Endereço de entrega:</p>
+                <p class="text-red-500 hidden -mt-2" id="name-warn">Digite o seu nome!</p>
+                <p class="font-bold">*Endereço de entrega:</p>
                 <input 
                     type="text" 
                     placeholder="Digite o seu endereço completo!"
                     id="adress"
-                    class="w-full border-2 p-1 rounded-none my-2"
+                    class="w-full border-2 p-1 rounded-none mt-2 mb-3"
                 >
-                <p class="text-red-500 hidden" id="adress-warn">Digite o seu endereço completo!</p>
+                <p class="text-red-500 hidden -mt-2" id="adress-warn">Digite o seu endereço completo!</p>
                 <div class="flex items-center">
                     <input checked id="getLocation" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Enviar localização</label>
+                    <label for="checked-checkbox" class="ms-2 mt-4 text-sm font-medium text-gray-900 dark:text-gray-300">Enviar localização</label>
                 </div>
             </div>
             <h2 class="text-center font-bold text-2x1 m-3">Dados do Pedido</h2>
             <div class="flex flex-col bg-white p-4 shadow-md">
-                <p class="font-bold mt-4 w-full">Tipo do pedido:</p>
-                <select id="tp_pedido" class="select-box w-full border-2 p-1 rounded-none my-2">
-                    <option value="opcao1">Delivery</option>
-                    <option value="opcao2">Retirar</option>
-                    <option value="opcao3">Comer no Local</option>
+                <p class="font-bold mt-4 w-full">*Tipo do pedido:</p>
+                <select id="tp_pedido" class="select-box w-full border-2 p-1 rounded-none my-2"required>
+                    <option value="opcao1" disabled selected hidden class="text-gray-200">Selecione o tipo do pedido</option>
+                    <option value="opcao2">Delivery</option>
+                    <option value="opcao3">Retirar</option>
+                    <option value="opcao4">Comer no Local</option>
                 </select>
-                <p class="font-bold mt-4 w-full">Forma de Pagamento:</p>
-                <select id="tp_pagamento" class="select-box w-full border-2 p-1 rounded-none my-2">
-                    <option value="opcao1">Pix</option>
-                    <option value="opcao2">Débito</option>
-                    <option value="opcao3">Crédito</option>
-                    <option value="opcao3">Dinheiro</option>
+                <p class="font-bold mt-4 w-full">*Forma de Pagamento:</p>
+                <select id="tp_pagamento" class="select-box w-full border-2 p-1 rounded-none my-2"required>
+                    <option value="opcao1">Selecione a forma de pagamento</option>
+                    <option value="opcao2">Pix</option>
+                    <option value="opcao3">Débito</option>
+                    <option value="opcao4">Crédito</option>
+                    <option value="opcao5">Dinheiro</option>
                 </select>            
             </div>
         </div>

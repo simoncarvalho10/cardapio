@@ -20,9 +20,19 @@ const cliente = document.getElementById("cliente")
 function atualizarIndexSelect(selectId) {
     const selectElement = document.getElementById(selectId);
     const currentIndex = selectElement.selectedIndex;
-    const currenteOptions = selectElement.options[currentIndex].text;
-    return currenteOptions;
+    selectElement.classList.remove("border-red-500")
+    if(currentIndex != 0){
+       const currenteOptions = selectElement.options[currentIndex].text;
+        return currenteOptions;
+    } else {
+        alertToastfy("Selecione uma opção válida!", "#ef4444", "center");
+        selectElement.classList.add("border-red-500")
+        throw new Error("Selecione uma opção válida!");
+        //alertToastfy("Selecione uma opção válida!", "#ef4444", "center");
+    }
+    
 }
+
  
 const spanItem = document.getElementById("date-spam")
 
@@ -336,7 +346,7 @@ checkoutBtn.addEventListener("click", async function(){
     const cartItens = cart.map((item) => {
         return (
            //`*Item:*+${item.name}%0A*Quantidade:*+(${item.qtd})*2%0A*Preço:*+R$${item.price}%0A%0A`
-           `*Item:* ${item.name}%0A*Quantidade:* ${item.qtd}%0A*Preço:* R$${item.price}%0A%0A`
+           `*Item:* ${item.name}%0A*Quantidade:* ${item.qtd}%0A*Preço:* R$ ${item.price}%0A%0A`
          )
     }).join("")
 
@@ -385,8 +395,8 @@ function alertToastfy(text, color, position){
         position: position, // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-          background: color,
-          //background: "#ef4444",
+            background: color,
+            //background: "#ef4444",
         },
         onClick: function(){} // Callback after click
       }).showToast();
