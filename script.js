@@ -56,7 +56,7 @@ cartBtn.addEventListener("click", function() {
     if(cart.length > 0){
         cartmodal.style.display = "flex"  
     } else {
-        alert("Não há nenhum item no carrinho")
+        alertToastfy("Não há nenhum item no carrinho!", "#ef4444", "center");
     }
 })
 
@@ -85,20 +85,7 @@ document.addEventListener('click', (event) => {
         if (inputValue > 0){
             addToCart(name, price, inputValue)
         } else {
-
-            Toastify({
-                text: "Quantidade não permitida!",
-                duration: 3000,
-                close: true,
-                gravity: "top", // `top` or `bottom`
-                position: "center", // `left`, `center` or `right`
-                stopOnFocus: true, // Prevents dismissing of toast on hover
-                style: {
-                  background: "#ef4444",
-                },
-                onClick: function(){} // Callback after click
-              }).showToast();
-
+            alertToastfy("Quantidade não permitida!", "#ef4444", "center");
         }
     }
 
@@ -118,18 +105,7 @@ function addToCart(name, price, qtdInputValues){
         })
     }
 
-    Toastify({
-        text: "Item adicionado ao carrinho!",
-        duration: 3000,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "center", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "#22c55e",
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
+    alertToastfy("Item adicionado ao carrinho", "#22c55e", "center");
     
     uppdateCartModal();
 }
@@ -185,18 +161,7 @@ function removeItemCart(name){
 
         cart.splice(index, 1);
 
-        Toastify({
-            text: "Item removido do carrinho!",
-            duration: 3000,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "center", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-              background: "#22c55e",
-            },
-            onClick: function(){} // Callback after click
-          }).showToast();
+        alertToastfy("Item removido do carrinho!", "#22c55e", "center");
 
         uppdateCartModal();
     }
@@ -322,7 +287,29 @@ async function validaPedido(){
 
 }
 
+function gerarNumeroSequencial() {
+    // Obtém a data e hora atuais
+    const agora = new Date();
+
+    // Formata a data e hora como "HHMMSS" (hora, minuto e segundo)
+    const dia = agora.getDate().toString().padStart(2, '0');
+    //const ano = agora.getFullYear().toString().padStart(2, '0').slice(-2);
+    const hora = agora.getHours().toString().padStart(2, '0');
+    const minuto = agora.getMinutes().toString().padStart(2, '0');
+    const segundo = agora.getSeconds().toString().padStart(2, '0');
+
+    // Combina os valores para gerar um número de até 6 dígitos
+    const numeroSequencial = `${dia}${hora}${minuto}${segundo}`;
+
+    return parseInt(numeroSequencial, 10);
+}
+
+
 checkoutBtn.addEventListener("click", async function(){
+
+    // Pega número do pedido
+    const nPedido = gerarNumeroSequencial();
+
 
     const vPedido = await validaPedido();
 
@@ -340,20 +327,7 @@ checkoutBtn.addEventListener("click", async function(){
     }
 
     /*if (!isOpen){
-
-        Toastify({
-            text: "No momento o restaurante está fechado!",
-            duration: 3000,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "center", // `left`, `center` or `right`
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-            style: {
-              background: "#ef4444",
-            },
-            onClick: function(){} // Callback after click
-          }).showToast();
-        return;
+        alertToastfy("No momento o restaurante está fechado!", "#ef4444", "center");
     }*/
 
 
@@ -369,12 +343,14 @@ checkoutBtn.addEventListener("click", async function(){
     const message = cartItens
     const totalItens = cart.reduce((total, item) => total + (item.qtd * item.price), 0);
     const phone = "5562984917598"
+    const separador = "--------------------------------------------------------------"
 
     //const vTexto = encodeURIComponent(`${message}+${vPedido}`)
     //alert(vTexto);
 
-    window.open(`https://wa.me/${phone}?text=${message}*Total:* R$${totalItens.toFixed(2)}%0A%0A${vPedido}`,"_blank")
-    //alert(`https://wa.me/${phone}?text=${message}%0A%0A ${vPedido}`);
+    window.open(`https://wa.me/${phone}?text=${separador}%0A*Nº do pedido:* ${nPedido}%0A${separador}%0A${vPedido}%0A%0A${separador}%0ADados do pedido:%0A${separador}%0A${message}${separador}%0A*Total:* R$${totalItens.toFixed(2)}%0A${separador}%0A`,"_blank")
+
+    
 
     cart = [];
     uppdateCartModal();
@@ -399,6 +375,24 @@ if (isOpen){
     spanItem.classList.remove("bg-green-600")
     spanItem.classList.add("bg-red-500")
 }
+
+function alertToastfy(text, color, position){
+    Toastify({
+        text: text,
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: position, // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: color,
+          //background: "#ef4444",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+    return;
+}
+
 
 // VERIFICAR SE O RESTAURANTE ESTÁ ABERTO
 
